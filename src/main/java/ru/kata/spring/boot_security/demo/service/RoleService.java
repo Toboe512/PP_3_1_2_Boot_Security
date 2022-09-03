@@ -7,4 +7,6 @@ public interface RoleService {
     Role findRoleById(Long id);
 
     User setRolesByStrings(String[] roles, User user);
+
+    void add(Role role);
 }

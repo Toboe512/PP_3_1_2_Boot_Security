@@ -11,9 +11,7 @@ import javax.persistence.Table;
 @Table(name = "role")
 public class Role implements GrantedAuthority {
     @Id
-    @Column(name = "id")
     private Long id;
-    @Column(name = "role")
     private String role;
 
     public Role() {

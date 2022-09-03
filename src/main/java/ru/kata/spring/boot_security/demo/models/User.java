@@ -15,17 +15,14 @@ import java.util.Set;
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
     @Column(name = "name")
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
-    @Column(name = "email", unique = true)
+    @Column(name = "email")
     private String username;
-    @Column(name = "age")
     private int age;
-    @Column(name = "password")
     private String password;
 
     @ManyToMany()
@@ -44,6 +41,11 @@ public class User implements UserDetails {
         this.username = email;
         this.age = age;
         this.password = password;
+    }
+
+    public User(String firstName, String lastName, String email, int age, String password, Set<Role> roles) {
+        this(firstName, lastName, email, age, password);
+        this.roles = roles;
     }
 
     public void setId(Long id) {

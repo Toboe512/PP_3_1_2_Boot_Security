@@ -19,4 +19,9 @@ public class RoleDAOImpl implements RoleDAO {
                 .setParameter("id", id)
                 .getSingleResult();
     }
+
+    @Override
+    public void add(Role role) {
+        entityManager.persist(entityManager.merge(role));
+    }
 }
