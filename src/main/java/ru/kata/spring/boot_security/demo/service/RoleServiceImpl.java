@@ -9,6 +9,7 @@ import ru.kata.spring.boot_security.demo.models.User;
 
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -38,8 +39,31 @@ public class RoleServiceImpl implements RoleService {
         return user;
     }
 
+    @Transactional
     @Override
     public void add(Role role) {
         roleDAO.add(role);
+    }
+
+    @Override
+    public List<Role> listRoless() {
+        return roleDAO.listRoles();
+    }
+
+    @Transactional
+    @Override
+    public void delete(Role role) {
+        roleDAO.delete(role);
+    }
+
+    @Transactional
+    @Override
+    public void update(Role role) {
+        roleDAO.update(role);
+    }
+
+    @Override
+    public Role getRole(Long id) {
+        return roleDAO.getRole(id);
     }
 }

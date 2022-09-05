@@ -41,33 +41,31 @@
 <!--                                   TODO Панель админа                                   -->
 <div class="container-fluid" id="admin_page" style="display: block">
     <div class="row">
-        <div class="col-sm-auto">
-            <div class="list-group" style="width: 200px; height: 200px; background-color: rgb(253,253,254);">
+        <div class="col-2 bg-white pt-3 min-vh-100 px-0">
+            <div class="list-group" >
+                <ul class="nav nav-pills flex-column">
+                    <li class="nav-item">
                     <a href="#" class="list-group-item list-group-item-action active" >Admin</a>
+                    </li>
+                    <li class="nav-item">
                     <a href="#" class="list-group-item list-group-item-action" onclick="return show('user_page', 'admin_page');">User</a>
+                    </li>
+                </ul>
             </div>
         </div>
 
 <!--- TODO таблица пользователей -->
-        <div class="col" id="user_table" style="display: block">
-            <div class="container-fluid">
+        <div class="col bg-light" id="user_table" style="display: block;" >
                 <h2><b> Admin panel</b></h2>
-            </div>
-
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a href="#" class="list-group-item list-group-item-action active" >
-                        User table
-                    </a>
+                    <a href="#" class="nav-link active" >User table</a>
                 </li>
-
                 <li class="nav-item">
-                    <a href="#" class="list-group-item list-group-item-action" onclick="return show('new_user', 'user_table');">
-                        New user
-                    </a>
+                    <a href="#" class="nav-link" onclick="return show('new_user', 'user_table');">New user</a>
                 </li>
             </ul>
-            <div class="container-fluid border bg-light">
+            <div class="container-fluid border">
                 <h4><b> All users</b></h4>
             </div>
             <div class="container-fluid border bg-white px-4 py-3 border-top">
@@ -104,7 +102,7 @@
                               role="dialog"
                               th:aria-labelledby="${'editModalLabel' + user.id}"
                               aria-hidden="true">
-                             <form th:method="PATCH" th:action="@{/admin}" th:object="${user_edit}">
+                             <form class="needs-validation" th:method="PATCH" th:action="@{/admin}" th:object="${user_edit}">
                              <div class="modal-dialog" role="document">
                                  <div class="modal-content">
                                      <div class="modal-header">
@@ -119,34 +117,46 @@
                                                  <b><label for="id">ID</label></b><br>
                                                  <input type="text" name="id" th:value="${user.id}"
                                                         readonly
-                                                        class="readonly" id="id"/>
+                                                        class="readonly"
+                                                        id="id"/>
                                              </p>
                                              <p class="text-center">
                                                  <b><label for="first_name">First name</label></b><br>
-                                                 <input type="text" name="firstName" th:value="${user.firstName}" id="first_name"/>
+                                                 <input type="text" name="firstName" th:value="${user.firstName}"
+                                                        id="first_name"
+                                                        required/>
                                              </p>
                                              <p class="text-center">
                                                  <b><label for="last_name">Lastname</label></b><br>
-                                                 <input type="text" name="lastName" th:value="${user.lastName}" id="last_name"/>
+                                                 <input type="text" name="lastName" th:value="${user.lastName}"
+                                                        id="last_name"
+                                                        required/>
                                              </p>
                                              <p class="text-center">
                                                  <b><label for="age">Age</label></b><br>
-                                                 <input type="number" name="age" th:value="${user.age}" id="age"/><br>
+                                                 <input type="number" name="age" th:value="${user.age}"
+                                                        id="age"
+                                                        required/>
                                              </p>
                                              <p class="text-center">
-                                                 <b><label for="username">Lastname</label></b><br>
-                                                 <input type="email" name="username" th:value="${user.username}" id="username"/>
+                                                 <b><label for="username">Email</label></b><br>
+                                                 <input type="email" name="username" th:value="${user.username}"
+                                                        id="username"
+                                                        required/>
                                              </p>
                                              <p class="text-center">
                                                  <label for="password"><b>Password</b></label><br>
-                                                 <input type="password" name="password" th:value="${user.password}" id="password"/>
+                                                 <input type="password" name="password" th:value="${user.password}"
+                                                        id="password"
+                                                        required/>
                                             </p>
                                             <p class="text-center">
                                                 <label for="role" ><b>Role</b></label><br>
                                                 <select multiple class="form-control "
                                                         id="role"
                                                         name="roles_string"
-                                                        size="2">
+                                                        size="2"
+                                                        required>
                                                     <option value="1">USER</option>
                                                     <option value="2">ADMIN</option>
                                                 </select>
@@ -249,60 +259,52 @@
         </div>
 
 <!--TODO Создание нового пользователя -->
-        <div class="col" id="new_user" style="display: none">
-            <div class="container-fluid">
+        <div class="col bg-light" id="new_user" style="display: none">
                 <h2><b> Admin panel</b></h2>
-            </div>
-
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a href="#" class="list-group-item list-group-item-action" onclick="return show('user_table', 'new_user');">
-                        User table
-                    </a>
+                    <a href="#" class="nav-link" onclick="return show('user_table', 'new_user');">User table</a>
                 </li>
-
                 <li class="nav-item">
-                    <a href="#" class="list-group-item list-group-item-action active">
-                        New user
-                    </a>
+                    <a href="#" class="nav-link active">New user</a>
                 </li>
             </ul>
 
             <div class="container-fluid border bg-light">
                 <h4><b> Add new user</b></h4>
             </div>
-            <div class="container-fluid border px-4 py-3 border-top">
+            <div class="container-fluid border px-4 py-3 border-top bg-white">
                 <div class="container">
                     <div class="row justify-content-md-center">
                         <form th:method="POST" th:action="@{/admin}" th:object="${user_edit}">
                             <div class="form-group">
                             <p class="text-center">
                                 <b><label for="first_name">First name</label></b><br>
-                                <input type="text" name="firstName" id="first_name"/>
+                                <input type="text" name="firstName" id="first_name" required/>
                             </p>
                             </div>
                             <div class="form-group">
                             <p class="text-center">
                                 <b><label for="last_name">Lastname</label></b><br>
-                                <input type="text" name="lastName" id="last_name"/>
+                                <input type="text" name="lastName" id="last_name" required/>
                             </p>
                             </div>
                             <div class="form-group">
                             <p class="text-center">
                                 <b><label for="age">Age</label></b><br>
-                                <input type="number" name="age" id="age"/>
+                                <input type="number" name="age" id="age" required/>
                             </p>
                             </div>
                             <div class="form-group">
                             <p class="text-center">
                                 <b><label for="username">Email</label></b><br>
-                                <input type="email" name="username" id="username"/>
+                                <input type="email" name="username" id="username" required/>
                             </p>
                             </div>
                             <div class="form-group">
                             <p class="text-center">
                                 <b><label for="password">Password</label></b><br>
-                                <input type="password" name="password" id="password"/>
+                                <input type="password" name="password" id="password" required/>
                             </p>
                             </div>
                             <div class="form-group">
@@ -310,7 +312,8 @@
                                     <b><label for="role">Role</label></b><br>
                                     <select multiple class="form-control" id="role"
                                             name="roles_string"
-                                            size="2">
+                                            size="2"
+                                            required>
                                         <option value="1">USER</option>
                                         <option value="2">ADMIN</option>
                                     </select>
@@ -332,22 +335,28 @@
 <!--                                   TODO Панель пользователя -->
 <div class="container-fluid" id="user_page" style="display: none">
     <div class="row">
-        <div class="col-sm-auto">
-            <div class="list-group" style="width: 200px; height: 200px; background-color: rgb(253,253,254);">
-
-                <a href="#" class="list-group-item list-group-item-action" onclick="return show('admin_page', 'user_page');">Admin</a>
-                <a href="#" class="list-group-item list-group-item-action active">User</a>
+        <div class="col-2 bg-white pt-3 min-vh-100 px-0">
+            <div class="list-group">
+                <div class="list-group" >
+                    <ul class="nav nav-pills flex-column">
+                        <li class="nav-item">
+                            <a href="#" class="list-group-item list-group-item-action" onclick="return show('admin_page', 'user_page');">Admin</a>
+                        </li>
+                        <li class="nav-item">
+                             <a href="#" class="list-group-item list-group-item-action active">User</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
 
-        <div class="col">
-            <div class="container-fluid">
-                <h2><b>  User information-page </b></h2>
-            </div>
+        <div class="col bg-light">
+            <h2><b>  User information-page </b></h2>
 
-            <div class="container-fluid border bg-light">
-                <h4><b> About user</b></h4>
-            </div>
+        <div class="container-fluid border bg-light">
+            <h4><b> About user</b></h4>
+        </div>
+
             <div class="container-fluid border bg-white px-4 py-3 border-top">
                 <table class="table table-striped">
                     <thead>
@@ -373,8 +382,8 @@
                 </table>
             </div>
         </div>
-    </div>
 
+    </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
