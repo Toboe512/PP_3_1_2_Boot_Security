@@ -3,6 +3,7 @@ package ru.kata.spring.boot_security.demo.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,11 +17,13 @@ public class AdminController {
 
     private final UserService userService;
     private final RoleService roleService;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public AdminController(UserService userService, RoleService roleService) {
+    public AdminController(UserService userService, RoleService roleService, PasswordEncoder passwordEncoder) {
         this.userService = userService;
         this.roleService = roleService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping()
@@ -36,6 +39,7 @@ public class AdminController {
     @PostMapping()
     public String create(@RequestParam(value = "roles_string", required = false) String[] roles,
                          @ModelAttribute("user_edit") User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userService.add(roleService.setRolesByStrings(roles, user));
         return "redirect:/admin";
     }
@@ -44,6 +48,7 @@ public class AdminController {
     public String edit(
             @RequestParam(value = "roles_string", required = false) String[] roles,
             @ModelAttribute("user_edit") User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userService.update(roleService.setRolesByStrings(roles, user));
         return "redirect:/admin";
     }
@@ -53,6 +58,4 @@ public class AdminController {
         userService.delete(userService.getUser(id));
         return "redirect:/admin";
     }
-
-
 }
