@@ -31,6 +31,7 @@ public class RoleServiceImpl implements RoleService {
     public User setRolesByStrings(String[] roles, User user) {
         if (roles != null) {
             Set<Role> roleSet = new HashSet<>();
+
             for (String role : roles) {
                 roleSet.add(roleDAO.findRoleById(Long.valueOf(role)));
             }

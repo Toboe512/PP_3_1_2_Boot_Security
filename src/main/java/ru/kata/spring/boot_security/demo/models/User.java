@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 
 @Entity
@@ -109,12 +110,9 @@ public class User implements UserDetails {
     }
 
     public String getRoleToString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Role role : this.roles) {
-            stringBuilder.append(role.getRole().replace("ROLE_", ""))
-                    .append(" ");
-        }
-        return stringBuilder.toString();
+        return roles.stream().map(x -> x.getRole()
+                .replace("ROLE_", ""))
+                .collect(Collectors.joining(" "));
     }
 
     @Override
