@@ -42,16 +42,14 @@
 <div class="container-fluid" id="admin_page" style="display: block">
     <div class="row">
         <div class="col-2 bg-white pt-3 min-vh-100 px-0">
-            <div class="list-group" >
-                <ul class="nav nav-pills flex-column">
-                    <li class="nav-item">
-                    <a href="#" class="list-group-item list-group-item-action active" >Admin</a>
-                    </li>
-                    <li class="nav-item">
-                    <a href="#" class="list-group-item list-group-item-action" onclick="return show('user_page', 'admin_page');">User</a>
-                    </li>
-                </ul>
-            </div>
+            <ul class="nav nav-pills flex-column">
+                <li class="nav-item">
+                <a href="#" class="nav-link active" >Admin</a>
+                </li>
+                <li class="nav-item">
+                <a href="#" class="nav-link" onclick="return show('user_page', 'admin_page');">User</a>
+                </li>
+            </ul>
         </div>
 
 <!--- TODO таблица пользователей -->
@@ -69,7 +67,7 @@
                 <h4><b> All users</b></h4>
             </div>
             <div class="container-fluid border bg-white px-4 py-3 border-top">
-              <table class="table table-striped "> <!-- table table-striped table-borderless border-top -->
+              <table class="table table-striped ">
                  <thead>
                  <tr>
                      <th scope="col">ID</th>
@@ -336,27 +334,20 @@
 <div class="container-fluid" id="user_page" style="display: none">
     <div class="row">
         <div class="col-2 bg-white pt-3 min-vh-100 px-0">
-            <div class="list-group">
-                <div class="list-group" >
-                    <ul class="nav nav-pills flex-column">
-                        <li class="nav-item">
-                            <a href="#" class="list-group-item list-group-item-action" onclick="return show('admin_page', 'user_page');">Admin</a>
-                        </li>
-                        <li class="nav-item">
-                             <a href="#" class="list-group-item list-group-item-action active">User</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            <ul class="nav nav-pills flex-column">
+                <li class="nav-item">
+                    <a href="#" class="nav-link" onclick="return show('admin_page', 'user_page');">Admin</a>
+                </li>
+                <li class="nav-item">
+                     <a href="#" class="nav-link active">User</a>
+                </li>
+            </ul>
         </div>
-
         <div class="col bg-light">
             <h2><b>  User information-page </b></h2>
-
         <div class="container-fluid border bg-light">
             <h4><b> About user</b></h4>
         </div>
-
             <div class="container-fluid border bg-white px-4 py-3 border-top">
                 <table class="table table-striped">
                     <thead>
